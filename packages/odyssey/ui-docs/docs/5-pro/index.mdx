@@ -1,0 +1,99 @@
+---
+title: Odyssey UI Pro
+description: Props 驱动的应用层组件
+---
+
+# Odyssey UI Pro
+
+`@odyssey/pro` 在核心 composition API 上提供后台管理运行时、ProSelect、ProRadioGroup、ProCountBadge、ProConfirm、ProTable、ProForm、ProNumberField 与 ProOtpField，并继承同一个 OdysseyProvider、主题、density 和 portal。
+
+## 何时使用
+
+用于后台和应用页面中结构稳定、重复出现的 props 驱动模式。需要完全改变 DOM anatomy、浮层结构或状态模型时，直接组合 `@odyssey/ui` primitives。
+
+Pro 保持单一 package，每个组件在源码中拥有独立目录，并只通过 `/select`、`/table`、`/admin-shell` 等 subpath 导入；包根不提供聚合入口。Odyssey 的样式和 DOM 技术前缀统一为 `od`。
+
+ProRadioGroup 从 options 渲染普通或按钮式单选，并保留 Core RadioGroup 的表单与键盘行为。需要自定义 anatomy 时直接使用 Core RadioGroup。
+
+<ComponentDemo id="proGallery" />
+
+```tsx
+import { ProSelect } from "@odyssey/pro/select";
+
+<ProSelect label="门店" options={[{ label: "上海店", value: "shanghai" }]} value={storeId} onValueChange={setStoreId} />;
+```
+
+ProSelect 的输入宽度与弹层宽度可以分别设置。`contentProps.width` 直接继承 Core Combobox 的 `trigger | content | CSS inline-size` 契约，不增加第二套根级控制属性。
+
+```tsx
+<ProSelect
+  label="门店"
+  options={stores}
+  style={{ width: "10rem" }}
+  contentProps={{ width: "22rem" }}
+/>
+```
+
+## Composition 对照
+
+Options API 负责常见结构和状态组合。核心便利组件只接受一个强类型 `options` 对象和根 `className/style`；完全自定义 anatomy 时直接使用 `@odyssey/ui`。
+
+## 后台管理运行时
+
+后台能力按独立 subpath 导出，不包含路由、权限或 API Client。`ProAdminProvider` 保持主题、色彩模式和 density，并按应用配置的 storage key 持久化外观设置。
+
+```tsx
+import { ProAdminProvider } from "@odyssey/pro/admin-provider";
+import { ProAdminShell } from "@odyssey/pro/admin-shell";
+
+<ProAdminProvider appearance={{ storageKey: "acme-admin-appearance" }}>
+  <ProAdminShell options={{ brand: { name: "Acme" }, navigation: { items: modules, activeKey: "home", onChange: navigate }, account: { user, onLogout: logout }, children: <Page /> }} />
+</ProAdminProvider>;
+```
+
+产品路由通过 `renderNavigationItem(item, state)` 注入。`state.onSelect()` 会同时完成 Pro Shell 的导航回调和移动 Drawer 收起，Pro 不绑定 TanStack Router 或 React Router。
+
+登录界面只负责 credentials、TOTP 和首次密码修改的展示与输入，实际认证流程由产品回调完成。
+
+<ComponentDemo id="proAdminLogin" />
+
+```tsx
+import { ProAdminLogin } from "@odyssey/pro/admin-login";
+
+<ProAdminLogin appName="Acme" phase="credentials" busy={submitting} error={error} onSubmit={authenticate} />;
+```
+
+## Form 与 Table
+
+ProForm 使用 TanStack Form，并在提交前以 Zod `parseAsync` 生成转换后的 output。ProTable 注册 TanStack Table 9 的 sorting、pagination、selection、visibility 与 filtering features；服务端模式只回传一基页码的 `query` 状态变化，不自行请求数据。
+
+表格的 filters、rowActions、bulkActions、toolbar 与 pagination 由 `ProTableOptions` 组合。`responsive="stack"` 使用根容器查询，并从 `column.meta.mobileLabel` 读取移动端标题。
+
+## Semantic parts 与 slots
+
+0.3 起，所有拥有真实 DOM 根节点的 Pro 组件都透传 ref、原生属性、`className/style`，并提供强类型 `classNames/styles`。`slots` 只替换稳定 wrapper 内的内容，因此不会移除 ARIA、styled anatomy 或 `data-od-slot`；完全替换结构继续使用 Core composition API 或组件明确提供的 `render*`。
+
+样式合并顺序是默认 styled anatomy、semantic map、专用 part props、根 `className/style`。Provider 没有真实 DOM，不提供虚假的 semantic parts。
+
+## 无障碍
+
+ProSelect 保留 Core Combobox 的键盘与焦点恢复行为；Admin 菜单和移动 Drawer 使用真实 menu/dialog anatomy。Form 和 Login 通过 Field 建立 label、description、error 与 control 关联。自定义 slot 内容仍需保留可理解的文本和语义。
+
+## API
+
+<ApiTable name="ProSelectProps" />
+<ApiTable name="ProSelectSlots" />
+<ApiTable name="ProFormProps" />
+<ApiTable name="ProFormOptions" />
+<ApiTable name="ProNumberFieldProps" />
+<ApiTable name="ProNumberFieldSlots" />
+<ApiTable name="ProOtpFieldProps" />
+<ApiTable name="ProOtpFieldSlots" />
+<ApiTable name="ProIconPickerProps" />
+<ApiTable name="ProIconPickerSlots" />
+<ApiTable name="ProAdminLoginProps" />
+<ApiTable name="ProAdminLoginSlots" />
+<ApiTable name="ProAdminShellProps" />
+<ApiTable name="ProAdminShellOptions" />
+
+标准表单弹窗已并入 [Dialog](/3-components/dialog)。

@@ -1,0 +1,57 @@
+{
+  "name": "@odyssey/ai",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./headless": "./src/headless.ts",
+    "./react": "./src/react.tsx",
+    "./ui/markdown": "./src/ui/markdown.ts",
+    "./ui/locale": "./src/ui/locale.ts",
+    "./ui/speech": "./src/ui/speech.ts",
+    "./assistant": "./src/assistant.tsx"
+  },
+  "scripts": {
+    "test": "vitest run --environment jsdom",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "check": "tsc -p tsconfig.app.json --noEmit && biome check src tests scripts fixtures && node ./scripts/validate-architecture.mjs",
+    "architecture:check": "node ./scripts/validate-architecture.mjs"
+  },
+  "dependencies": {
+    "@odyssey/ui": "workspace:*",
+    "@tanstack/ai": "^0.49.1",
+    "@tanstack/ai-client": "^0.28.0",
+    "@tanstack/ai-react": "^0.22.1",
+    "@shikijs/core": "catalog:",
+    "@shikijs/engine-javascript": "catalog:",
+    "@shikijs/langs": "catalog:",
+    "@shikijs/themes": "catalog:",
+    "lucide-react": "catalog:",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "styled-components": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@odyssey/design-devconfig": "workspace:*",
+    "@testing-library/react": "catalog:",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "@types/node": "^24.13.3",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "jsdom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "styled-components": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "license": "MIT"
+}

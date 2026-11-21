@@ -1,0 +1,20 @@
+.wrap {
+  overflow-x: auto;
+}
+.table {
+  border-collapse: collapse;
+  font-size: var(--od-font-size-sm);
+  min-width: 42rem;
+  width: 100%;
+}
+.table th,
+.table td {
+  border-bottom: 1px solid var(--od-border);
+  padding: var(--od-space-3);
+  text-align: left;
+  vertical-align: top;
+}
+.table th {
+  color: var(--od-muted-foreground);
+  font-weight: 600;
+}

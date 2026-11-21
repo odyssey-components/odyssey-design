@@ -1,0 +1,51 @@
+{
+  "name": "odyssey-design",
+  "private": true,
+  "license": "MIT",
+  "packageManager": "bun@1.4.4",
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/odyssey/*"
+    ],
+    "catalog": {
+      "react": "19.3.1",
+      "react-dom": "19.3.1",
+      "@types/react": "19.3.0",
+      "@types/react-dom": "19.3.0",
+      "typescript": "7.0.2",
+      "vite": "8.3.5",
+      "vitest": "5.0.5",
+      "@vitest/coverage-v8": "5.0.5",
+      "styled-components": "6.6.0",
+      "@biomejs/biome": "2.6.4",
+      "@vitejs/plugin-react": "6.1.2",
+      "@testing-library/react": "16.3.3",
+      "@testing-library/user-event": "14.6.8",
+      "@testing-library/jest-dom": "7.0.1",
+      "jsdom": "30.1.3",
+      "zustand": "5.0.16",
+      "zod": "4.6.7",
+      "lucide-react": "1.63.0",
+      "@shikijs/core": "4.5.0",
+      "@shikijs/engine-javascript": "4.5.0",
+      "@shikijs/langs": "4.5.0",
+      "@shikijs/themes": "4.5.0",
+      "tailwindcss": "4.3.4",
+      "@tailwindcss/vite": "4.3.4",
+      "class-variance-authority": "0.7.1",
+      "clsx": "2.1.1",
+      "tailwind-merge": "3.7.0"
+    }
+  },
+  "overrides": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:"
+  },
+  "scripts": {
+    "dev": "bun run --filter @odyssey/ui-docs dev",
+    "build": "bun run --filter @odyssey/ui-docs build",
+    "check": "bun run --filter @odyssey/ui-docs api:generate && bun run --workspaces --sequential --if-present typecheck && bun run --workspaces --sequential --if-present architecture:check && bun run --filter @odyssey/ui size:check",
+    "test": "bun run --workspaces --sequential --if-present test:run && bun run --filter @odyssey/ai test && bun run --filter @odyssey/ui-docs test"
+  }
+}

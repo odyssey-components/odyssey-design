@@ -1,0 +1,7 @@
+{
+  "extends": "./app.json",
+  "compilerOptions": {
+    "types": ["vite/client"],
+    "jsx": "react-jsx"
+  }
+}

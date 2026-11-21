@@ -1,0 +1,32 @@
+---
+title: 迁移到 0.3
+sidebar_position: 4
+---
+
+# 迁移到 0.3
+
+0.3 将 Dialog、Popover、Select、Tabs、Tooltip、Checkbox、RadioGroup 和 Switch 改为组合式 API，删除原有 `options`、`items`、`label`、`trigger` 和确认按钮等便捷属性。
+
+## Dialog
+当前版本的 Dialog 使用独立 props。见 [Dialog 迁移说明](/3-components/dialog#迁移旧弹窗)。
+
+~~~tsx
+<Dialog title="标题" description="说明" trigger={<Button>打开</Button>} cancel={{ label: "关闭" }} />
+~~~
+
+## Select
+
+~~~tsx
+<Select defaultValue="shanghai">
+  <SelectTrigger><SelectValue /><SelectIcon /></SelectTrigger>
+  <SelectPortal>
+    <SelectPositioner>
+      <SelectContent><SelectList>
+        <SelectItem value="shanghai"><SelectItemText>上海</SelectItemText></SelectItem>
+      </SelectList></SelectContent>
+    </SelectPositioner>
+  </SelectPortal>
+</Select>
+~~~
+
+表单控件的可见标签改由原生 label 或 Field 组合提供。升级后检查焦点恢复、键盘操作、`aria-describedby` 与 portal 主题继承。

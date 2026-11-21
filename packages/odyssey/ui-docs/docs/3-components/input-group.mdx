@@ -1,0 +1,24 @@
+---
+title: Input Group
+sidebar_position: 5
+---
+
+# Input Group
+
+## 何时使用
+
+用于为单个输入控件组合前后缀、单位或局部操作。它不是通用的相邻按钮合并组件。
+
+<ComponentDemo id="inputGroup" />
+
+Addon 支持 `inline-start`、`inline-end`、`block-start` 与 `block-end`；非交互 Addon 点击时会聚焦输入控件，按钮和链接保持自己的交互。局部操作使用 `InputGroupButton`，它默认 `type="button"`，并提供 `xs`、`sm`、`icon-xs`、`icon-sm` 四种紧凑尺寸。
+
+## 无障碍
+
+为 `InputGroupInput` 或 `InputGroupTextarea` 提供标签。RTL 下 inline 方位会自动翻转，粗指针目标保留最小可点击区域。
+
+## API
+
+<ApiTable name="InputGroupProps" />
+<ApiTable name="InputGroupAddonProps" />
+<ApiTable name="InputGroupButtonProps" />

@@ -1,0 +1,60 @@
+---
+title: Component Quality Audit
+sidebar_position: 6
+---
+
+# Component Quality Audit
+
+本审计以 Ant Design 6.6.1 与仓库内 shadcn 实现的成熟状态覆盖为参照，以 Odyssey 的 Base UI adapter、组合式 API、Token、稳定 anatomy 和跨端无障碍约束为准。P0 表示语义、表单、焦点或键盘错误；P1 表示公共契约或常用状态缺口；P2 表示便利性、视觉变体或文档增强。本轮未发现需要阻断发布的 P0，Radio、选择与输入控件 P1 已完成。
+
+| 组件 | 已覆盖 | 值得吸收 | 不引入 | 后续 |
+|---|---|---|---|---|
+| Alert | tone、语义 anatomy、容器响应式 action、关闭组合示例 | 复杂异步操作由调用方组合 | Ant message 静态 API | 已完成 |
+| AlertDialog | focus trap、恢复焦点 | 异步确认状态指南 | 内置业务确认文案 | P2 |
+| AppShell | 响应式壳 anatomy | collapsed 状态契约 | Ant Layout 固定结构 | P2 |
+| Badge | tone、原生透传、Pro count/overflow/dot | 文本状态与数字计数保持分层 | DOM 包裹注入 | 已完成 |
+| Button | size、variant、loading、反馈、ButtonIcon | 图标尺寸与 DOM 顺序契约 | danger 业务语义扩散 | 已完成 |
+| Card | 组合式 parts、显式 hoverable | 交互继续由 Link/Button 提供 | Meta/Grid 静态成员 | 已完成 |
+| Checkbox | checked/indeterminate、组合式 Group、反馈 | options 位于 Pro | Core options | 已完成 |
+| Code | inline/block | copyable 放入 Pro/文档组合 | 内置高亮引擎 | P2 |
+| Collapsible | 原生 details/summary、ref、稳定 anatomy | 图标 slot 可在后续评估 | Collapse items API | 已完成 |
+| ColorPicker | 原生颜色与 alpha 契约 | presets/panel 放入 Pro | 浏览器私有 DOM 模拟 | P2 |
+| Combobox | 单选、多选、chips、搜索、弹层独立宽度 | loading/error 虚拟化指南 | Core options facade | P2 |
+| DescriptionList | 语义 dl/dt/dd、ref、size/layout | bordered 视觉变体可在后续评估 | column 数据 DSL | 已完成 |
+| Dialog | portal、嵌套层、焦点恢复 | loading 与窄屏示例 | confirm 静态方法 | P2 |
+| Drawer | swipe、overlay、焦点 | placement/size 示例矩阵 | 独立状态引擎 | P2 |
+| DropdownMenu | submenu、radio、keyboard | selectable 多状态文档 | items API 进入 Core | P2 |
+| EmptyState | 组合式 anatomy | image/action 推荐组合 | 内置业务空态 | P2 |
+| Field | label、description、error 关联 | status/help 一致性 | Form.Item 隐式注册 | P2 |
+| FileInput | 原生 input 契约 | 上传列表属于 Pro | 请求与存储逻辑 | P2 |
+| Form | 原生 form 容器 | layout 与 disabled 聚合评估 | 表单状态引擎 | P2 |
+| IconButton | 尺寸、可访问名称 | tooltip 推荐组合 | 自动猜测 aria-label | P2 |
+| Input | size、invalid、Field 集成 | prefix/suffix 统一使用 InputGroup | allowClear 私有状态 | P2 |
+| InputGroup | addon、control、button、focus-within、block/inline | 更复杂的复合控件由调用方组合 | 任意组件负 margin 拼接 | 已完成 |
+| Link | variant、图标 anatomy | disabled link 语义指南 | 伪造 disabled anchor | P2 |
+| NumberField | step、scrub、格式化 | formatter/parser 示例 | InputNumber 平行状态 | P2 |
+| NumberInput | 原生轻量 facade | 与 NumberField 选择指南 | 重复复杂能力 | P2 |
+| OtpInput | slots、mask、输入模式、size、invalid | paste/IME 场景继续回归 | 业务验证码发送 | 已完成 |
+| Page | 页面 anatomy、容器响应式 PageActions | loading 由现有状态组件组合 | ProLayout 复制 | 已完成 |
+| Pagination | 组合式 link/button anatomy、容器响应式、simple | total/pageSize/跳页位于 Pro | 数据请求状态 | 已完成 |
+| Popover | positioning、dismiss、嵌套层 | trigger 模式示例 | Tooltip/Popover 合并 | P2 |
+| Progress | 确定/不确定状态 | circle/steps 作为后续变体 | 内联图表引擎 | P2 |
+| Prose | 排版 token | compact/reading width 示例 | Markdown parser | P2 |
+| RadioGroup | 表单、键盘、组合式 anatomy | button、size、block、solid | Core options 与静态成员 | 已完成 |
+| Select | Base UI listbox、portal、默认内容宽度及 trigger/content/custom 弹层模式 | Ant 的匹配能力以 anatomy 属性吸收；默认采用 shadcn/Base UI 的最小锚点宽度 | Core options facade、Ant 根级布尔兼容属性 | P2 |
+| Skeleton | ref、shape、animation、reduced motion | 复杂段落模板由调用方组合 | 自动分析 children 布局 | 已完成 |
+| Slider | keyboard、range anatomy | marks/tooltip 放入 Pro | 数据驱动 marks 进入 Core | P2 |
+| Spinner | status、size | delay 由调用方或 Pro 组合 | 全局静态 loading | P2 |
+| Stack | gap、方向、对齐、wrap | 复杂二维布局保持原生 CSS | Grid DSL 膨胀 | 已完成 |
+| Stat | label/value/description | precision/trend 放入 Pro | 数值格式业务策略 | P2 |
+| Switch | checked、thumb、size、反馈、readonly/invalid | async 状态由调用方组合 | loading 与 children 双标签兼容 API | 已完成 |
+| Table | 原生 table anatomy | sticky/size/empty 由 ProTable 组合 | Core columns DSL | P2 |
+| Tabs | keyboard、indicator、panel | editable/card 进入 Pro | items API 进入 Core | P2 |
+| Textarea | Field 与 invalid | autoSize 作为独立行为评估 | DOM 测量全局副作用 | P2 |
+| Toast | provider、promise、swipe | placement/maxCount 策略 | 全局单例静态 API | P2 |
+| ToggleButton | Base UI pressed、单/多选 ToggleGroup、方向键 | 工具栏组合示例 | 用 toggle 模拟表单互斥选择 | 已完成 |
+| Tooltip | hover/focus、portal | fresh/delay 策略文档 | 可交互复杂内容 | P2 |
+
+## 后续批次
+
+全部 P1 已完成。后续 P2 按实际产品需求选择视觉变体和文档增强；每批仍须同步 Catalog、生成 API、迁移说明和实际消费方测试。

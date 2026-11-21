@@ -1,0 +1,25 @@
+{
+  "name": "@odyssey/design-devconfig",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    "./base.json": "./base.json",
+    "./app.json": "./app.json",
+    "./node.json": "./node.json",
+    "./react.json": "./react.json",
+    "./biome": "./biome.json"
+  },
+  "scripts": {
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "biome check ."
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "typescript": "catalog:"
+  },
+  "license": "MIT"
+}

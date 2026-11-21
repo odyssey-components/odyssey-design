@@ -1,0 +1,35 @@
+---
+title: Combobox
+sidebar_position: 8
+---
+
+# Combobox
+
+## 何时使用
+
+用于可搜索选择、对象值选择或多选 chips。静态且无需搜索的短列表优先使用 Select。
+
+<ComponentDemo id="combobox" />
+
+## 弹层宽度
+
+`ComboboxContent` 默认与输入锚点严格等宽。使用 `width="content"` 可让长选项按内容扩展且保持至少与锚点等宽；传入 number、`rem`、`clamp()` 等 CSS inline-size 时，可以独立指定弹层宽度。无论选择哪种模式，弹层都会由 `--available-width` 限制在当前可用空间内。
+
+```tsx
+<ComboboxInput style={{ inlineSize: "10rem" }} />
+<ComboboxPortal>
+  <ComboboxPositioner>
+    <ComboboxContent width="20rem">{/* options */}</ComboboxContent>
+  </ComboboxPositioner>
+</ComboboxPortal>
+```
+
+## 键盘与无障碍
+
+输入框使用标准 combobox 语义；方向键移动高亮项，Enter 选择，Escape 关闭并恢复焦点。`ComboboxStatus` 应保持挂载，用于播报异步加载状态。
+
+## API
+
+<ApiTable name="ComboboxInputProps" />
+<ApiTable name="ComboboxItemProps" />
+<ApiTable name="ComboboxContentProps" />

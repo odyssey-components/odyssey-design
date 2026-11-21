@@ -1,0 +1,22 @@
+---
+title: ProPagination
+sidebar_position: 4
+---
+
+# ProPagination
+
+## 何时使用
+
+用于已知总数的数据集合。ProPagination 计算页码窗口和省略号，并可组合总数、每页条数和快速跳页；请求、缓存和 URL 同步仍由产品负责。
+
+<ComponentDemo id="proPagination" />
+
+支持受控 `page/pageSize` 与非受控 `defaultPage/defaultPageSize`。修改每页条数会重置到第 1 页；快速跳页在 Enter 或“跳转”按钮提交时钳制到有效范围。
+
+## 无障碍
+
+根节点继承 Core nav 语义。页码按钮具有本地化名称和 `aria-current`，精简模式通过 live status 宣布当前页；输入与每页条数选择器均具有本地化标签。
+
+## API
+
+<ApiTable name="ProPaginationProps" />

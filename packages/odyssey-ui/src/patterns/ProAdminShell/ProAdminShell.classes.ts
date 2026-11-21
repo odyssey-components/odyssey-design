@@ -1,0 +1,17 @@
+export const styles = {
+  body: "od-ProAdminShell-body",
+  brand: "od-ProAdminShell-brand",
+  content: "od-ProAdminShell-content",
+  desktopNavigation: "od-ProAdminShell-desktopNavigation",
+  header: "od-ProAdminShell-header",
+  headerActions: "od-ProAdminShell-headerActions",
+  headerLeading: "od-ProAdminShell-headerLeading",
+  mobileDrawer: "od-ProAdminShell-mobileDrawer",
+  mobileNavigationSection: "od-ProAdminShell-mobileNavigationSection",
+  mobileTrigger: "od-ProAdminShell-mobileTrigger",
+  navigation: "od-ProAdminShell-navigation",
+  navigationItem: "od-ProAdminShell-navigationItem",
+  navigationLabel: "od-ProAdminShell-navigationLabel",
+  root: "od-ProAdminShell-root",
+  sidebar: "od-ProAdminShell-sidebar",
+} as const;

@@ -1,0 +1,63 @@
+.demo {
+  border: 1px solid var(--od-border);
+  border-radius: var(--od-radius-lg);
+  margin-block: var(--od-space-6);
+  overflow: hidden;
+}
+.toolbar {
+  align-items: center;
+  background: var(--od-muted);
+  border-bottom: 1px solid var(--od-border);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--od-space-2);
+}
+.stage {
+  background-image: radial-gradient(var(--od-border) 0.6px, transparent 0.6px);
+  background-size: 12px 12px;
+  overflow: auto;
+  padding: var(--od-space-6);
+}
+.canvas {
+  background: var(--od-background);
+  border: 1px solid var(--od-border);
+  border-radius: var(--od-radius-md);
+  margin: auto;
+  min-height: 12rem;
+  padding: var(--od-space-6);
+  transition: max-width var(--od-duration-normal);
+}
+.stage[data-viewport="mobile"] .canvas {
+  max-width: 375px;
+}
+.stage[data-viewport="tablet"] .canvas {
+  max-width: 768px;
+}
+.stage[data-viewport="desktop"] .canvas {
+  max-width: 100%;
+}
+.controls {
+  align-items: end;
+  border-top: 1px solid var(--od-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--od-space-4);
+  padding: var(--od-space-4);
+}
+.controls label {
+  display: grid;
+  font-size: var(--od-font-size-sm);
+  gap: var(--od-space-1);
+}
+.controls input {
+  background: var(--od-background);
+  border: 1px solid var(--od-border);
+  border-radius: var(--od-radius-sm);
+  color: inherit;
+  min-height: 2.25rem;
+  padding-inline: var(--od-space-2);
+}
+.demo pre {
+  border-radius: 0;
+  margin: 0;
+}

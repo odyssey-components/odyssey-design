@@ -1,0 +1,17 @@
+---
+title: Getting Started
+---
+
+# Odyssey UI
+
+Odyssey UI 是 source-first React 组件库。组件和运行时主题都从主入口导入，应用不需要预构建 UI，也不需要导入独立 CSS。
+
+```tsx
+import { Button, OdysseyProvider, odysseyThemes } from "@odyssey/ui";
+
+<OdysseyProvider theme={odysseyThemes.shadcn} colorScheme="system">
+  <Button variant="solid">开始</Button>
+</OdysseyProvider>;
+```
+
+最终应用负责用 Vite/TypeScript 编译 Odyssey 的 TSX 源码。styled-components 在运行时注入样式，Provider 同时暴露 `--od-*` CSS Variable 供业务 CSS 使用。

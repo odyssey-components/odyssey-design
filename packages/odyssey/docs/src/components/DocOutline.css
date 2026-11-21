@@ -1,0 +1,55 @@
+.od-Docs-outlineList {
+  display: grid;
+  gap: var(--od-space-1);
+  margin: var(--od-space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.od-Docs-outlineItem {
+  min-width: 0;
+}
+.od-Docs-outlineLink {
+  display: block;
+  overflow: hidden;
+  padding: 3px 0;
+  color: var(--od-muted-foreground);
+  font-size: var(--od-font-size-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.od-Docs-outlineLink[aria-current="true"] {
+  color: var(--od-primary);
+  font-weight: var(--od-font-weight-semibold);
+}
+.od-Docs-outlineLink[aria-current="true"]::before {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin-right: var(--od-space-2);
+  border-radius: 999px;
+  background: var(--od-primary);
+  vertical-align: -2px;
+  content: "";
+}
+.od-Docs-outlineItem[data-depth="1"] .od-Docs-outlineLink {
+  font-weight: var(--od-font-weight-semibold);
+}
+.od-Docs-outlineItem[data-depth="2"] .od-Docs-outlineLink {
+  padding-left: 12px;
+}
+.od-Docs-outlineItem[data-depth="3"] .od-Docs-outlineLink {
+  padding-left: 24px;
+  font-size: var(--od-font-size-xs);
+}
+.od-Docs-outlineItem[data-depth="4"] .od-Docs-outlineLink {
+  padding-left: 36px;
+  font-size: var(--od-font-size-xs);
+}
+.od-Docs-outlineItem[data-depth="5"] .od-Docs-outlineLink {
+  padding-left: 48px;
+  font-size: var(--od-font-size-xs);
+}
+.od-Docs-outlineItem[data-depth="6"] .od-Docs-outlineLink {
+  padding-left: 60px;
+  font-size: var(--od-font-size-xs);
+}

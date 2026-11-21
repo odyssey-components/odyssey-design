@@ -1,0 +1,24 @@
+---
+title: Collapsible
+sidebar_position: 16
+---
+
+# Collapsible
+
+## 何时使用
+
+用于默认收起、由用户按需展开的补充内容。组件使用原生 `details` 与 `summary`，不适合需要手风琴互斥状态的数据列表。
+
+<ComponentDemo id="collapsible" />
+
+Root、Trigger 与 Content 都透传 ref、className、style 和对应原生属性。受控展示可使用原生 `open` 与 `onToggle`。
+
+## 无障碍
+
+Trigger 使用原生 summary 语义，可通过 Tab 聚焦，并使用 Enter 或 Space 切换。焦点样式不依赖鼠标或设备类型。
+
+## API
+
+<ApiTable name="CollapsibleProps" />
+<ApiTable name="CollapsibleTriggerProps" />
+<ApiTable name="CollapsibleContentProps" />

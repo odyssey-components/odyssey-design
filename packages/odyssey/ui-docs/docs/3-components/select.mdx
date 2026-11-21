@@ -1,0 +1,48 @@
+---
+title: Select
+sidebar_position: 7
+---
+
+# Select
+
+## 何时使用
+
+用于从预定义列表中选择一个值。少量选项优先使用 RadioGroup。
+
+<ComponentDemo id="select" />
+
+## 宽度与长文本
+
+Select Trigger 默认按内容确定宽度，不设置通用的最小宽度。在表单、Grid 或 Flex 布局中，由使用方通过 `className` 或 `style` 设置 `width: 100%`、固定宽度或最小宽度。容器较窄时，选中值会单行省略，后缀图标保持完整。
+
+```tsx
+<SelectTrigger style={{ width: "100%" }}>
+  <SelectValue placeholder="选择一个选项" />
+  <SelectIcon />
+</SelectTrigger>
+```
+
+`SelectContent` 默认使用 `width="content"`：短选项时与 Trigger 等宽，长选项会让弹层自然扩展，但不会窄于 Trigger。这与 shadcn/Base UI 的最小锚点宽度模式一致，常见场景不需要额外传参。需要严格等宽时使用 `width="trigger"`；也可以传入任意 CSS inline-size，分别控制按钮与弹层。所有模式都会受当前位置可用空间限制，避免越出视口。
+
+```tsx
+<SelectTrigger style={{ inlineSize: "10rem" }}>
+  <SelectValue placeholder="选择城市" />
+  <SelectIcon />
+</SelectTrigger>
+<SelectPortal>
+  <SelectPositioner>
+    <SelectContent>{/* long options naturally expand the popup */}</SelectContent>
+  </SelectPositioner>
+</SelectPortal>
+```
+
+## 键盘
+
+Enter 或 Space 打开，方向键移动，Enter 选择，Escape 关闭。
+
+## API
+
+<ApiTable name="SelectProps" />
+<ApiTable name="SelectTriggerProps" />
+<ApiTable name="SelectPositionerProps" />
+<ApiTable name="SelectContentProps" />

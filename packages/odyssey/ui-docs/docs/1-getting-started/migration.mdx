@@ -1,0 +1,15 @@
+---
+title: 从 @libs/ui 迁移
+sidebar_position: 3
+---
+
+# 从 @libs/ui 迁移
+
+迁移采用逐页、逐组件策略，不提供 Ant Design props 兼容层。
+
+1. 在页面根部接入 `OdysseyProvider`。
+2. 从 Button、Input、Card 等基础组件开始替换。
+3. 单独验证 Dialog、Select 和 Toast 的焦点与浮层行为。
+4. 删除页面不再使用的 Ant Design 样式和类型。
+
+旧 `@libs/ui` Ant Design adapter 已退役，不再作为新迁移步骤的依赖。复杂表格、日期选择和 schema 表单应按产品现有业务需求使用 `@odyssey/ui` 的公开能力组合；若缺少适配的共享能力，应先归属到真实产品或共享 owner，再单独设计迁移。

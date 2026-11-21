@@ -1,0 +1,47 @@
+{
+  "name": "@odyssey/i18n",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "biome lint .",
+    "typecheck": "tsc -b --noEmit",
+    "lint:fix": "tsc -b --noEmit && biome lint --write .",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "check": "tsc -b --noEmit && biome check .",
+    "test:run": "vitest run",
+    "biome:check": "biome check",
+    "biome:write": "biome check --write",
+    "biome:format": "biome format --write",
+    "biome:lint": "biome lint"
+  },
+  "dependencies": {
+    "i18next": "^26.3.1",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "i18next-http-backend": "^4.0.0",
+    "react-i18next": "^17.0.8"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@odyssey/design-devconfig": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "license": "MIT"
+}

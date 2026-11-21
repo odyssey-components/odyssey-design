@@ -1,0 +1,23 @@
+---
+title: v0.8 Migration
+---
+
+# v0.8 迁移
+
+v0.8 保持组件 composition API、99 个 `--od-*` 与 `odysseyTokenVars` 不变，但统一了高级主题 graph，并移除了 Provider 的组件样式全集。
+
+旧的 `foundation`、`derived`、扁平 `semantic` 与顶层 `components` override 改为四层 `tokens`：
+
+```tsx
+const theme = createOdysseyTheme("brand", {
+  tokens: {
+    reference: { shadow: { emphasis: "none" } },
+    semantic: { color: { background: "oklch(0.98 0.01 250)" } },
+    components: { card: { shadow: "none" } },
+  },
+});
+```
+
+主题算法现在接收当前 `OdysseyResolvedTokens`，并返回 `reference`、`semantic` 或 `components` 的深层 partial。算法按声明顺序读取前一步结果。`OdysseyResolvedDesignTokens` 与 `resolveOdysseyDesignTokens()` 已删除；设计工具改用 `OdysseyResolvedTokens` 和 `useOdysseyResolvedTokens()`。
+
+组件样式由各自的 styled anatomy 按需携带。Provider 只输出 baseline、CSS Variables、locale 和 portal host；应用不需要增加任何样式 import。

@@ -1,0 +1,10 @@
+---
+title: Pro 0.5 迁移
+description: NumberField 与 OTP 从 Core composition 到 Pro facade 的新增能力。
+---
+
+# Pro 0.5 迁移
+
+新增 `@odyssey/pro/number-field` 与 `@odyssey/pro/otp-field`。两个 facade 都组合 Core Field，提供 label、description、error、semantic parts 与 slots。
+
+ProForm 的 `number` 字段已切换到 Core NumberField，并新增 `otp` 字段。AdminLogin 的 TOTP 阶段也使用 Core OtpInput；认证回调结构保持不变。

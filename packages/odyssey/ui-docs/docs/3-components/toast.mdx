@@ -1,0 +1,24 @@
+---
+title: Toast
+sidebar_position: 12
+---
+
+# Toast
+
+## 何时使用
+
+用于非阻塞反馈。关键错误和需要用户决策的内容不应仅通过 Toast 展示。
+
+<ComponentDemo id="toast" />
+
+## 无障碍
+
+通知通过 polite live region 宣布。重要错误不能只依赖自动消失的 Toast，应在页面中保留可访问反馈。
+
+应用使用 `Toaster` 获得默认 Portal、Viewport 和 List；需要自定义 anatomy 时才组合底层 `ToastProvider`。API 支持 `update`、`dismiss` 和异步 `promise`，自动关闭时间使用 `timeout`。
+
+## API
+
+<ApiTable name="ToastInput" />
+<ApiTable name="ToastProviderProps" />
+<ApiTable name="ToasterProps" />

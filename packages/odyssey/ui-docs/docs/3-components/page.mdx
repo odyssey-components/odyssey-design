@@ -1,0 +1,27 @@
+---
+title: Page
+sidebar_position: 3
+---
+
+# Page
+
+## 何时使用
+
+Page 提供页面、标题、说明、操作和正文的稳定语义结构。标题操作使用 `PageActions`，不要在每个页面重复组合 `Stack justify="between"`。
+
+PageHeader 根据自身可用宽度排列内容：空间充足时操作位于逻辑 inline-end，窄容器中自动换到标题下方，因此嵌套页面和 RTL 都不依赖设备断点。
+
+<ComponentDemo id="pageForm" />
+
+## 无障碍
+
+PageTitle 默认输出一级标题。PageActions 只负责布局，内部按钮和链接必须继续使用真实交互元素与可访问名称。
+
+## API
+
+<ApiTable name="PageProps" />
+<ApiTable name="PageHeaderProps" />
+<ApiTable name="PageTitleProps" />
+<ApiTable name="PageDescriptionProps" />
+<ApiTable name="PageActionsProps" />
+<ApiTable name="PageContentProps" />

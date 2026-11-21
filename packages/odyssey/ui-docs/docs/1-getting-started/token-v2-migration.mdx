@@ -1,0 +1,25 @@
+---
+title: Token v2 迁移
+sidebar_position: 4
+---
+
+# Token v2 迁移
+
+v0.2 删除了 v1 token 别名。请一次性替换自定义主题：
+
+| v1 | v2 |
+| --- | --- |
+| --od-color-bg | --od-background |
+| --od-color-bg-subtle | --od-muted |
+| --od-color-bg-muted | --od-secondary 或 --od-accent |
+| --od-color-text | --od-foreground |
+| --od-color-text-muted | --od-muted-foreground |
+| --od-color-accent | --od-primary |
+| --od-color-accent-hover | 从 --od-primary 自动派生 |
+| --od-color-danger | --od-destructive |
+| --od-color-border | --od-border |
+| --od-color-focus | --od-ring |
+| --od-shadow-popup | --od-shadow-lg |
+| --od-line-height | --od-line-height-normal |
+
+同时为主要、卡片、浮层、次级、弱化、交互和危险表面配置对应的 -foreground token，避免在组件中写死白色或黑色。

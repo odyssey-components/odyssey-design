@@ -1,0 +1,26 @@
+---
+title: Dialog
+sidebar_position: 8
+---
+
+# Dialog
+
+## 何时使用
+
+用于需要用户立即处理的短任务。移动窄屏会自动使用底部面板布局。
+
+用 `title`、`description`、`content` 或 `form` 配置内容，用 `confirm`、`cancel` 配置操作。确认回调成功后关闭弹窗，抛错后保留弹窗并展示调用方提供的 `error`。有特殊操作时，可通过 `footer` 传入按钮。
+
+<ComponentDemo id="dialog" />
+
+### 迁移旧弹窗
+
+从 `@odyssey/ui/primitives/dialog` 导入 `Dialog`。将旧的 `options` 对象展开为独立 props。组合式用法中的标题、正文和底部操作分别迁移到 `title`、`content` 或 `form`、`footer`。
+
+## 无障碍
+
+打开后焦点进入 Dialog，关闭后返回触发元素。必须提供明确标题。
+
+## API
+
+<ApiTable name="DialogProps" />

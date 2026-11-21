@@ -1,0 +1,38 @@
+{
+  "button": {
+    "raw": 232549,
+    "gzip": 66143
+  },
+  "root-button": {
+    "raw": 232663,
+    "gzip": 64197
+  },
+  "button-select": {
+    "raw": 429890,
+    "gzip": 121581
+  },
+  "input-group": {
+    "raw": 262829,
+    "gzip": 74208
+  },
+  "combobox": {
+    "raw": 444081,
+    "gzip": 122762
+  },
+  "number-field": {
+    "raw": 989729,
+    "gzip": 257269
+  },
+  "otp-input": {
+    "raw": 945701,
+    "gzip": 244563
+  },
+  "toast": {
+    "raw": 326275,
+    "gzip": 90666
+  },
+  "all": {
+    "raw": 870301,
+    "gzip": 233889
+  }
+}

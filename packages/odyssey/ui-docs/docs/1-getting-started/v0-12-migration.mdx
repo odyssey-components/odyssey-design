@@ -1,0 +1,18 @@
+---
+title: v0.12 迁移
+sidebar_position: 12
+---
+
+# v0.12 迁移
+
+RadioGroup 的选中圆点改由 `RadioGroupIndicator` 绘制。自定义 Indicator 时应直接覆盖该 anatomy，不再依赖 `RadioGroupItem::after`。
+
+按钮式互斥选择改用 `RadioButton`，并放在同一个 `RadioGroup` 中。`size`、`buttonStyle`、`block` 和 `orientation` 在 Group 上声明。数组选项使用 `@odyssey/pro/radio-group` 的 `ProRadioGroup`。
+
+ToggleButton 现由 Base UI Toggle 管理交互。`pressed` 不再必填，非受控用法使用 `defaultPressed`；回调的第二个参数为交互详情。相关按钮使用 `ToggleGroup`，其值为字符串数组。旧的手工 `onClick` 翻转逻辑应删除，避免一次操作切换两次。
+
+Checkbox 多选组改用组合式 `CheckboxGroup`；options 写法迁移到 `@odyssey/pro/checkbox-group`。InputGroup 的局部按钮使用 `InputGroupButton`，它默认不会提交表单。
+
+OtpInput 与 Switch 新增 `sm | md | lg` 尺寸。OtpInput 的视觉 Slot 和 Separator 现在从无障碍树隐藏；Switch 继续保持 `Switch` + `SwitchThumb` anatomy，异步加载由调用方组合。
+
+Core Pagination 不再接受 `page`、`pageCount` 和 `onPageChange`。URL 分页改用 `PaginationLink` anatomy，本地状态分页使用 `PaginationButton` anatomy；已知 total/pageSize 的数据分页迁移到 `@odyssey/pro/pagination`。ProTable 默认分页已复用 ProPagination。

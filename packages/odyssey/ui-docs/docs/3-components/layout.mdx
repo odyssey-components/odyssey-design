@@ -1,0 +1,40 @@
+---
+title: Card、Stack 与 ControlGroup
+sidebar_position: 2
+---
+
+# Card、Stack 与 ControlGroup
+
+## 何时使用
+
+Card 提供内容分组，并通过 Header、Title、Description、Action、Content、Footer 形成稳定的内部排版；Stack 负责一维布局与统一间距。
+
+`hoverable` 只提供 hover-capable 设备上的视觉提升，不会让 Card 获得点击、焦点或按钮语义。需要交互时在 Card 内组合 Link 或 Button。Stack 使用 `wrap` 处理可用空间不足，不再通过内联 `flexWrap` 重复配置。
+
+<ComponentDemo id="card" />
+<ComponentDemo id="presetGallery" />
+<ComponentDemo id="stack" />
+
+ControlGroup 将直接子项中的 Button 和单行 Input 横向拼接。每个控件保留自己的标签、焦点和禁用状态。适用于搜索框与清除按钮等共享边框的操作组。
+
+<ComponentDemo id="controlGroup" />
+
+~~~tsx
+<Card hoverable>
+  <CardHeader>
+    <CardTitle>标题</CardTitle>
+    <CardDescription>说明</CardDescription>
+    <CardAction>操作</CardAction>
+  </CardHeader>
+  <CardContent>内容</CardContent>
+  <CardFooter>底部操作</CardFooter>
+</Card>
+
+<Stack direction="row" gap={2} wrap>…</Stack>
+~~~
+
+## API
+
+<ApiTable name="CardProps" />
+<ApiTable name="StackProps" />
+<ApiTable name="ControlGroupProps" />

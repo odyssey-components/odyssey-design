@@ -1,0 +1,35 @@
+---
+title: Pro v0.3 迁移
+sidebar_position: 11
+---
+
+# Pro v0.3 迁移
+
+Odyssey Pro 0.3 统一 semantic parts、slots、ref 与原生属性，并把 Admin 运行时样式迁移为按组件加载的 styled anatomy。业务行为、Table 状态和 Form 校验流程没有变化。
+
+## Semantic parts
+
+所有真实 DOM 根组件现在支持 `classNames` 与 `styles`。使用 part key 定制局部样式，不依赖 `.od-Pro*` 私有类。
+
+```tsx
+<ProAdminShell
+  classNames={{ headerActions: "my-actions", navigationItem: "my-navigation-item" }}
+  styles={{ content: { maxInlineSize: "80rem" } }}
+  {...props}
+/>
+```
+
+`slots` 只替换稳定 wrapper 内的内容。若需要改变整体 DOM 或浮层结构，请使用 `@odyssey/ui` composition API。
+
+## Admin Shell 类型
+
+`ProAdminShellStyleMap` 已删除，改用 `ProAdminShellStyles`。`renderNavigationItem` 必须返回 `ReactElement`；返回元素会自动获得 navigation-item anatomy、semantic class/style 和状态属性，调用方继续通过 `state.onSelect` 执行导航并关闭移动 Drawer。
+
+## Runtime styles
+
+Pro 不再使用 `createGlobalStyle`。`ProAdminProvider` 只提供 Provider context，不携带 Shell、Login 或 UserMenu 样式；每个独立 subpath 只加载自身实际依赖的 styled anatomy。
+
+## API
+
+<ApiTable name="ProAdminShellProps" />
+<ApiTable name="ProAdminShellStyles" />

@@ -1,0 +1,24 @@
+---
+title: App Shell
+sidebar_position: 3
+---
+
+# App Shell
+
+App Shell 为桌面工作台提供语义化侧栏、主区域、页头和内容区。它只定义通用壳结构；产品可以通过 `className` 和公开 Odyssey token 调整业务网格。
+
+## 何时使用
+
+用于具有持续导航和主工作区的桌面型应用。普通内容页面继续使用 Page；临时移动导航使用 Drawer。
+
+窄屏下侧栏会隐藏，移动导航应使用 Drawer 呈现，避免产品自行实现遮罩层与焦点管理。
+
+## 无障碍
+
+Sidebar、Main 和 Header 输出对应 HTML landmark。页面应只包含一个主要的 Main，并为侧栏导航提供可访问名称。
+
+## API
+
+<ApiTable name="AppShellProps" />
+
+<ApiTable name="AppShellPartProps" />

@@ -1,0 +1,24 @@
+---
+title: Pro Count Badge
+sidebar_position: 6
+---
+
+# ProCountBadge
+
+## 何时使用
+
+ProCountBadge 用于未读数、通知数和其他非负整数计数。它组合 Core Badge，并提供零值隐藏、上限折叠、状态点和锚点定位；文本状态仍直接使用 Core Badge。
+
+<ComponentDemo id="proCountBadge" />
+
+## 行为
+
+负数和非有限值归一为 0，默认隐藏零值；超过 `overflowCount` 时显示上限加号。无文字状态点应提供 `label`，否则仅作为装饰内容隐藏于无障碍树。
+
+## 无障碍
+
+数字指示器默认使用显示值作为可访问名称。状态点通过 `label` 暴露含义；未提供 label 的状态点不会产生重复或无意义的读屏内容。
+
+## API
+
+<ApiTable name="ProCountBadgeProps" />

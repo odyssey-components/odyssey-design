@@ -1,0 +1,28 @@
+---
+title: Toggle Button
+sidebar_position: 2
+---
+
+# Toggle Button
+
+ToggleButton 表示可持续开启或关闭的独立操作状态。选中态使用 primary 强调的浅色表面，未选中态使用中性 outline。
+
+## 何时使用
+
+用于工具栏中可独立切换的操作。相关工具项使用 `ToggleGroup`，可选择单选或多选、水平或垂直方向；表单中的互斥选项仍使用 Radio Group，普通一次性操作继续使用 Button。
+
+<ComponentDemo id="toggleButton" />
+<ComponentDemo id="toggleGroup" />
+
+## 状态与主题
+
+选中态使用主题的 `primary`、`primaryHover` 与 `primaryActive` 语义 Token，通过主色文字、边框、浅色表面和轻微内描边表达持续状态。未选中态保持中性，仅在 hover 时使用 `accent`。产品应通过主题配置品牌主色，不应为 ToggleButton 编写业务颜色覆盖。
+
+## 无障碍
+
+组件通过 `aria-pressed` 暴露状态，支持受控 `pressed` 和非受控 `defaultPressed`。Group 使用方向键移动焦点，`orientation` 决定有效方向，`loopFocus` 控制首尾循环。
+
+## API
+
+<ApiTable name="ToggleButtonProps" />
+<ApiTable name="ToggleGroupProps" />

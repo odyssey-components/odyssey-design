@@ -1,0 +1,25 @@
+---
+title: DescriptionList
+sidebar_position: 3
+---
+
+# DescriptionList
+
+## 何时使用
+
+用于展示名称—值形式的只读属性。`columns` 控制并列项目数量；`layout` 控制每项内部的 term/detail 排列，responsive 模式根据组件可用宽度切换，不依赖设备类型。
+
+<ComponentDemo id="descriptionList" />
+
+三档 size 只调整项目间距，不改变正文语义。所有 anatomy 都透传 ref、className、style 与对应原生属性。
+
+## 无障碍
+
+组件保持 `dl`、`dt`、`dd` 原生结构和读取顺序。不要仅通过颜色或列位置表达 term 与 detail 的关系。
+
+## API
+
+<ApiTable name="DescriptionListProps" />
+<ApiTable name="DescriptionItemProps" />
+<ApiTable name="DescriptionTermProps" />
+<ApiTable name="DescriptionDetailProps" />

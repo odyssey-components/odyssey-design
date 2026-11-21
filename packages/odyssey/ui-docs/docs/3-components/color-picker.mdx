@@ -1,0 +1,28 @@
+---
+title: Color Picker
+sidebar_position: 12
+---
+
+# Color Picker
+
+`ColorPicker` 是受控或非受控的原生颜色输入，适合主题色、标签色等基础表单字段。它只负责颜色选择；标签、描述和错误状态使用 `Field` 组合。
+
+## Demo
+
+<ComponentDemo id="colorPicker" />
+
+## 何时使用
+
+用于用户需要直接选择颜色的表单。固定的语义状态色应由主题或业务状态映射提供，不应暴露为任意颜色输入。
+
+## 无障碍
+
+必须提供 `label`，组件会将其作为 accessible name。它支持键盘聚焦、disabled、ref、原生表单属性、RTL 以及亮暗主题。`allowAlpha` 只声明产品允许透明度的策略；浏览器不支持透明度选择时不会模拟第二套控件。
+
+## 迁移
+
+删除产品内颜色选择别名，使用 `Field + FieldLabel + ColorPicker`。值和 `onChange` 沿用原生 input 契约。
+
+## API
+
+<ApiTable name="ColorPickerProps" />

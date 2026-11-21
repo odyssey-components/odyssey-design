@@ -1,0 +1,31 @@
+.od-Docs-mermaidCard {
+  margin: var(--od-space-6) 0;
+}
+.od-Docs-mermaidToolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--od-space-2);
+  margin-bottom: var(--od-space-2);
+}
+.od-Docs-mermaidViewport {
+  min-height: 420px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: var(--od-line-width) solid var(--od-border);
+  border-radius: var(--od-radius-lg);
+  background: var(--od-background);
+  cursor: grab;
+}
+.od-Docs-mermaidViewportDragging {
+  cursor: grabbing;
+}
+.od-Docs-mermaidViewport:fullscreen {
+  padding: var(--od-space-6);
+  background: var(--od-background);
+}
+.od-Docs-mermaidSvg {
+  min-width: 960px;
+  min-height: 420px;
+  transform-origin: top left;
+  transition: transform var(--od-duration-normal) var(--od-ease-standard);
+}

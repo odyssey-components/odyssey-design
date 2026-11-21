@@ -1,0 +1,22 @@
+---
+title: Dropdown Menu
+sidebar_position: 10
+---
+
+# Dropdown Menu
+
+## 何时使用
+
+承载与触发元素相关的一组离散操作或单选设置。仅展示补充内容时使用 Popover，需要关键确认时使用 Dialog。
+
+<ComponentDemo id="dropdownMenu" />
+
+## 无障碍
+
+菜单支持方向键导航、Enter 或 Space 选择、Escape 关闭，并在关闭后将焦点返回触发元素。相关单选项应放入 RadioGroup；GroupLabel 也必须放在对应的 RadioGroup（或 Group）上下文内，不能作为 Popup 的直接子元素。
+
+## API
+
+<ApiTable name="DropdownMenuProps" />
+<ApiTable name="DropdownMenuItemProps" />
+<ApiTable name="DropdownMenuRadioGroupProps" />

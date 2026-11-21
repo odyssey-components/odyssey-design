@@ -1,0 +1,23 @@
+---
+title: OTP Input
+description: 面向一次性验证码的可访问组合输入，支持整段粘贴与移动端自动填充。
+---
+
+# OTP Input
+
+## 何时使用
+
+OTP Input 封装 `input-otp` 的隐藏真实输入语义。`OtpSlot` 只负责视觉呈现；标签、粘贴、焦点和 `one-time-code` 自动填充仍由真实 input 承担。
+
+使用 `size="sm | md | lg"` 匹配表单密度；`invalid` 和 `disabled` 会同步到真实输入和视觉槽。默认关闭拼写检查，并默认使用 `one-time-code` 与 numeric 键盘，调用方仍可覆盖这些原生属性。
+
+<ComponentDemo id="otpInput" />
+
+## 键盘与无障碍
+
+真实 input 必须有 label 或 `aria-label`。用户可以连续输入、整段粘贴、退格删除，也可以使用移动端一次性验证码自动填充。Slot、分隔符和假光标均为视觉 anatomy，不重复进入无障碍树。
+
+## API
+
+<ApiTable name="OtpInputProps" />
+<ApiTable name="OtpSlotProps" />

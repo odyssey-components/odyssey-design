@@ -1,0 +1,10 @@
+---
+title: UI 0.10 迁移
+description: 新增 NumberField 与 OTP Input，不替换既有 NumberInput。
+---
+
+# UI 0.10 迁移
+
+新增 `@odyssey/ui/number-field` 和 `@odyssey/ui/otp-input`。现有 `NumberInput` 保持不变，产品可以按需迁移需要步进、格式化或 scrub 的场景。
+
+两个组件复用现有 control/input token，没有新增 CSS Variable。

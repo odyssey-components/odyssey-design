@@ -1,0 +1,24 @@
+---
+title: Design Tokens
+---
+
+# Design Tokens
+
+Odyssey 使用 Seed → Reference → Semantic → Component 四层模型。`@odyssey/ui` 内部以 TypeScript 定义 schema、默认值、CSS Variable contract 和文档 metadata；Web serializer 再将运行时 token 写入 styled-components ThemeContext 和根节点 `--od-*` CSS Variables，不经过代码生成。
+
+- Seed 是品牌色、基础字号、spacing unit、radius、control height 与 motion 等最小输入。
+- Reference 是颜色、字号、间距、圆角、控件几何与时长阶梯，并根据 density 派生。
+- Semantic 表达 background、surface、text、action、status、focus 和 disabled 等用途。
+- Component 只保存 control、selection、menu、table、tabs、card、dialog 和 overlay 等有主题价值的决策。
+
+组件不得针对主题名写死颜色。TypeScript/React 代码使用 `odysseyTokenVars` 或 typed theme accessor；公开 CSS Variables 仍可用于业务 CSS 覆盖。
+
+```tsx
+import { odysseyTokenVars, useOdysseyResolvedTokens, useOdysseyTokens } from "@odyssey/ui";
+
+<div style={{ color: odysseyTokenVars.primary }} />;
+const tokens = useOdysseyTokens();
+const resolvedTokens = useOdysseyResolvedTokens();
+```
+
+`useOdysseyTokens()` 保持现有 Web 字符串契约。设计工具可以使用 `useOdysseyResolvedTokens()` 读取结构化 resolved graph。两者在 Provider 的 SSR 渲染期间均为确定性结果；`system` 在服务端按 light 解析，客户端挂载后同步。

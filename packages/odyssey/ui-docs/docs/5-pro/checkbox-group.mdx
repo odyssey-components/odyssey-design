@@ -1,0 +1,23 @@
+---
+title: ProCheckboxGroup
+sidebar_position: 3
+---
+
+# ProCheckboxGroup
+
+## 何时使用
+
+当多选项来自数组且不需要自定义 Core anatomy 时使用。组件只把 options 映射到 Core `CheckboxGroup`、`Checkbox` 和 `CheckboxIndicator`，选择状态仍由 Core 管理。
+
+<ComponentDemo id="proCheckboxGroup" />
+
+`renderOption` 只定制标签内容。需要任意结构时直接使用 `@odyssey/ui/checkbox`；值固定为字符串，以保持原生表单和 Base UI 分组契约。
+
+## 无障碍
+
+通过 `aria-label`、`aria-labelledby` 或外部 Field 为组提供可访问名称。每个 `renderOption` 结果必须提供可理解的文本标签，Space 切换当前项。
+
+## API
+
+<ApiTable name="ProCheckboxGroupProps" />
+<ApiTable name="ProCheckboxOption" />

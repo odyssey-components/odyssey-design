@@ -1,0 +1,14 @@
+---
+title: v0.7 Migration
+---
+
+# v0.7 迁移
+
+v0.7 删除 `styles.css`、构建期主题入口、preset CSS 生成器和 UI dist。移除所有样式导入与主题生成前置命令，并把 Provider 改为主题对象：
+
+```tsx
+const brand = createOdysseyTheme("brand", { seed: { colors: { primary: "#1e6e62" } } }, odysseyThemes.shadcn);
+<OdysseyProvider theme={brand}>...</OdysseyProvider>;
+```
+
+Starter 的 `defaultPreset` 改为 `defaultThemeId`，自定义候选使用 `themes: [{ id, label, theme }]`。持久化数据中的旧 `preset` 会自动迁移。

@@ -1,0 +1,43 @@
+---
+title: Pro v0.2 迁移
+sidebar_position: 10
+---
+
+# Pro v0.2 迁移
+
+Odyssey Pro 0.2 将 Table 切换到 TanStack Table 9 原生 feature API，并用 Core Combobox 统一 Select 的搜索与对象值能力。
+
+## ProTable
+
+`simpleColumns`、`page`、`pageCount`、`onPageChange`、`selectable` 和零散 TanStack state props 已删除。列统一使用 `ProColumnDef` 或 `createProColumnHelper()`；移动端标题放入 `meta.mobileLabel`。
+
+```tsx
+const columns: ProColumnDef<User>[] = [
+  {
+    accessorKey: "name",
+    header: "姓名",
+    meta: { label: "姓名", mobileLabel: "成员姓名" },
+    cell: ({ row }) => row.original.name,
+  },
+]
+
+<ProTable
+  columns={columns}
+  dataSource={data}
+  rowKey="id"
+  manual={{ pagination: true }}
+  pagination={{ total }}
+  query={{ page, pageSize, sorting, columnFilters, globalFilter }}
+  onQueryChange={setQuery}
+/>
+```
+
+`ProTableToolbar`、`ProTableSearch`、`ProTableColumnVisibility`、`ProTableBulkActions` 与 `ProTablePagination` 必须渲染在对应 ProTable 的 slot 内，它们会读取同一个 table context。请求、缓存、URL 同步与错误状态仍由页面负责。
+
+## ProSelect
+
+ProSelect 现在组合 Core Combobox。`ProOption<TValue>` 支持字符串和对象 value；`multiple` 会把 value 与回调推断为数组。`filterOption={false}` 关闭本地过滤并仅通过 `onSearch` 回传搜索词，不会自动发起请求。
+
+## Semantic parts
+
+Dialog、Confirm、PageState、Table 与 Admin Shell 统一使用 `classNames`、`styles`、`slots`。Admin Shell 的 `renderNavigationItem(item, state)` 可渲染产品路由 Link，Pro 本身不依赖路由库。

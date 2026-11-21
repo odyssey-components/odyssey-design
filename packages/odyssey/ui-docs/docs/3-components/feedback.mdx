@@ -1,0 +1,29 @@
+---
+title: Feedback
+sidebar_position: 15
+---
+
+# Feedback
+
+## 何时使用
+
+`Alert` 用于页面内需要立即读取的状态，支持 neutral、info、success、warning 和 danger。可关闭操作放入 `AlertAction`，不要用 Alert 代替需要确认的对话框。
+
+`Badge` 表示短状态，`Spinner` 表示暂时等待，`EmptyState` 用于没有可展示内容的区域。业务文案和操作通过明确的组合部件提供。
+
+数字计数、上限折叠和锚点覆盖使用 [ProCountBadge](/5-pro/count-badge)；Core Badge 不承担计数状态。
+
+Alert 的操作使用 `AlertAction` 组合，并由调用方控制关闭、重试等业务状态。操作区基于 Alert 自身可用宽度自动换行，不依赖设备断点。
+
+<ComponentDemo id="alert" />
+
+## 键盘与无障碍
+
+Alert 使用 `role="alert"`；纯视觉 Spinner 必须由调用方隐藏，独立 Spinner 应提供准确的 `label`。Empty State 的操作保持正常 Tab 顺序。
+
+## API
+
+<ApiTable name="AlertProps" />
+<ApiTable name="BadgeProps" />
+<ApiTable name="SpinnerProps" />
+<ApiTable name="EmptyStateProps" />

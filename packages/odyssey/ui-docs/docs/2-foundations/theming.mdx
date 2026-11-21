@@ -1,0 +1,50 @@
+---
+title: Theming
+---
+
+# Runtime theming
+
+<ComponentDemo id="presetGallery" />
+
+<ComponentDemo id="fluentPresetMatrix" />
+
+主题是 TypeScript 对象，由 Provider 在运行时解析，不生成 CSS 文件：
+
+```tsx
+import { createOdysseyTheme, OdysseyProvider, odysseyInteractionRecipes, odysseyThemes } from "@odyssey/ui";
+
+const brand = createOdysseyTheme("brand", {
+  interactions: odysseyInteractionRecipes.material,
+  seed: { colors: { primary: "oklch(0.48 0.14 160)" } },
+}, odysseyThemes.shadcn);
+
+<OdysseyProvider theme={brand} colorScheme="system" density="standard">
+  <App />
+</OdysseyProvider>;
+```
+
+`theme`、`colorScheme` 和 `density` 分别控制视觉定义、明暗偏好和控件密度。嵌套 Provider 和 Provider portal host 会获得独立的 ThemeContext 与 CSS Variables。
+
+内置 `odysseyThemes.fluent` 将 Fluent 2 Web 的 Web brand、neutral alias、Segoe UI、圆角、阴影和 motion 映射到 Odyssey token。它仍使用 Odyssey 的组件 anatomy、composition API 和无额外波纹的 quiet interaction recipe；它不是 Fluent React 组件或 DOM 的逐像素兼容层。
+
+```tsx
+<OdysseyProvider theme={odysseyThemes.fluent} colorScheme="system" density="standard">
+  <App />
+</OdysseyProvider>
+```
+
+`useOdysseyTheme()` 返回完整运行时主题，`useOdysseyTokens()` 返回 Web token 字符串，`useOdysseyResolvedTokens()` 返回结构化四层 token。React/TypeScript 样式优先使用 `odysseyTokenVars`；手写 CSS 中可以使用公开 `var(--od-*)`。
+
+v0.8 的 override 统一进入 `tokens`，scheme override 使用同一 graph：
+
+```tsx
+const editorial = createOdysseyTheme("editorial", {
+  tokens: {
+    reference: { shadow: { sm: "none" } },
+    components: { card: { radius: "0px" } },
+  },
+  schemes: {
+    dark: { semantic: { color: { background: "oklch(0.18 0.02 250)" } } },
+  },
+});
+```

@@ -1,0 +1,26 @@
+# 国际化与 Locale
+
+Odyssey 将业务翻译和组件默认文案分开管理。产品通过 `@odyssey/ui/i18n` 创建 i18next 实例，业务 resources、namespace 和语言路由继续留在产品内；`OdysseyProvider` 根据实例当前语言选择 UI locale。
+
+```tsx
+import { createI18n } from "@odyssey/ui/i18n";
+import { OdysseyProvider } from "@odyssey/ui/provider";
+
+const { instance: i18n, ready } = createI18n({
+  fallbackLng: "zh",
+  resources: {
+    zh: { common: { greeting: "你好" } },
+    en: { common: { greeting: "Hello" } },
+  },
+});
+
+await ready;
+
+root.render(
+  <OdysseyProvider i18n={i18n}>
+    <App />
+  </OdysseyProvider>,
+);
+```
+
+应用不需要、也不应额外挂载 `I18nextProvider`。显式组件文案 prop 优先级最高；`locale` prop 可覆盖实例的自动语言映射，缺失内容最终回退到 `zh-CN`。页面顶部的 Language 控件可直接比较中英文内置文案。

@@ -1,0 +1,12 @@
+---
+title: Pro 0.4 迁移
+description: ProForm 统一 TanStack instance、Zod 输出和新版字段 DSL。
+---
+
+# Pro 0.4 迁移
+
+`ProForm` 的文本字段类型从 `input` 改为 `text`。旧字段类型和 `useForm as useProForm` alias 已删除。
+
+新的 `useProForm`、`withProForm`、`useProFormContext` 与 `useProFieldContext` 来自同一组 TanStack `createFormHook` context。Owned 模式传入 `schema/defaultValues/onSubmit`；Bound 模式传入由 `useProForm` 创建的 `form`。
+
+Zod 校验首次在提交时显示，提交后改为 change revalidation。`onSubmit` 只接收 Zod output；无字段路径的问题和提交异常显示在 summary。

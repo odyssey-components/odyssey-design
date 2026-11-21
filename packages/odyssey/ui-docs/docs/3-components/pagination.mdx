@@ -1,0 +1,31 @@
+---
+title: Pagination
+sidebar_position: 9
+---
+
+# Pagination
+
+## 何时使用
+
+用于组合 URL 分页导航或本地状态分页的语义 anatomy。Core 不计算总页数，也不拥有 page、pageSize 或数据请求状态；完整数据分页使用 `@odyssey/pro/pagination`。
+
+<ComponentDemo id="pagination" />
+
+URL 导航使用 `PaginationLink`、`PaginationPreviousLink` 和 `PaginationNextLink`；本地状态操作使用对应 Button 组件。`PaginationContent` 与 `PaginationItem` 保持 nav、ul、li 语义，当前页通过 `current` 输出 `aria-current="page"`。
+
+## 响应式
+
+`responsive` 默认根据组件自身容器宽度隐藏标记为 `collapsible` 的项目和前后按钮文字；`simple` 会始终使用相同的精简布局。
+
+## 无障碍
+
+方向图标在 RTL 下翻转，粗指针环境保留至少 44px 目标。当前页使用 `aria-current="page"`，禁用链接移除 href 并退出 Tab 顺序。
+
+## API
+
+<ApiTable name="PaginationProps" />
+<ApiTable name="PaginationContentProps" />
+<ApiTable name="PaginationItemProps" />
+<ApiTable name="PaginationLinkProps" />
+<ApiTable name="PaginationButtonProps" />
+<ApiTable name="PaginationStatusProps" />

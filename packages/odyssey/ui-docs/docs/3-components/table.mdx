@@ -1,0 +1,11 @@
+---
+title: Table
+sidebar_position: 16
+---
+# Table
+
+用于展示结构化数据。`Table` 自带横向滚动容器；通过 `TableHeader`、`TableBody`、`TableRow`、`TableHead` 与 `TableCell` 保持原生表格语义。
+
+<ComponentDemo id="table" />
+
+为 `pagination` 传入 `{ page, pageSize, total, onPageChange, onPageSizeChange }`，即可在表格底部显示总数、每页条数、上一页、下一页和页码跳转。页码从 1 开始，调用方提供当前页的数据，可以在回调中切换本地数据或请求服务端。也可以传入自定义 React 节点作为分页内容。

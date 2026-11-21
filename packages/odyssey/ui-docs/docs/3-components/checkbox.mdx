@@ -1,0 +1,24 @@
+---
+title: Checkbox
+sidebar_position: 4
+---
+
+# Checkbox
+
+## 何时使用
+
+用于相互独立的多选项或单个确认项。多个相关选项放入 `CheckboxGroup`，受控和非受控值均为字符串数组；数组驱动的便捷写法使用 `@odyssey/pro/checkbox-group`。
+
+与文字组合时可以直接放入 `label`；控件采用固定尺寸和稳定的行内垂直对齐，选中前后不会改变文本基线。复杂说明文本建议配合 Field 使用。
+
+<ComponentDemo id="checkbox" />
+
+## 键盘
+
+聚焦后按 Space 切换状态。组禁用会传递到全部选项；只读选项保留可聚焦和当前值，但不会发生切换。
+
+## API
+
+<ApiTable name="CheckboxGroupProps" />
+<ApiTable name="CheckboxProps" />
+<ApiTable name="CheckboxIndicatorProps" />

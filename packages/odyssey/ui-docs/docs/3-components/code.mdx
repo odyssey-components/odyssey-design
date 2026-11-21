@@ -1,0 +1,28 @@
+---
+title: Code
+sidebar_position: 5
+---
+
+# Code
+
+`Code` 用于展示代码、哈希、passkey 等技术文本。默认是行内 `<code>`；设置 `block` 后形成可横向滚动的代码块。复制操作由产品使用 Button 与 Clipboard API 组合，不属于基础组件。
+
+## Demo
+
+<ComponentDemo id="code" />
+
+## 何时使用
+
+用于短代码标识、配置键、哈希与保留格式的技术文本；普通正文和富文本代码高亮应使用 Prose 或专门的高亮组合。
+
+## 无障碍
+
+组件保留原生 `code` 语义，并透传原生属性与 ref。长文本会安全换行；块级内容保持空白并允许滚动。颜色、背景、边框和圆角均来自 Odyssey Token，因此会随亮色、暗色与产品主题变化。
+
+## 迁移
+
+将产品内的代码样式包装替换为 `Code` 或 `InlineCode`。需要复制按钮时在外层组合 Button，并为按钮提供明确的 accessible name。
+
+## API
+
+<ApiTable name="CodeProps" />

@@ -1,0 +1,46 @@
+{
+  "name": "@odyssey/ui-docs",
+  "private": true,
+  "version": "0.7.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run api:generate && vite",
+    "api:generate": "bun scripts/generate-api.mjs",
+    "build": "bun run api:generate && bun run docs:check && tsc -b && vite build",
+    "docs:check": "bun scripts/validate-docs.mjs && bun scripts/validate-tokens.mjs",
+    "test": "vitest run src",
+    "test:visual": "playwright test",
+    "test:visual:update": "playwright test --update-snapshots",
+    "lint": "biome lint src scripts",
+    "typecheck": "tsc -b --noEmit",
+    "lint:fix": "tsc -b --noEmit && biome lint --write src scripts",
+    "format": "biome format --write src scripts",
+    "format:check": "biome format src scripts",
+    "check": "tsc -b --noEmit && biome check src scripts"
+  },
+  "dependencies": {
+    "@odyssey/docs": "workspace:*",
+    "@odyssey/ai": "workspace:*",
+    "@odyssey/ui": "workspace:*",
+    "@odyssey/pro": "workspace:*",
+    "@mdx-js/react": "^3.1.1",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "styled-components": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@odyssey/design-devconfig": "workspace:*",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^24.13.3",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "@tailwindcss/vite": "catalog:"
+  },
+  "license": "MIT"
+}

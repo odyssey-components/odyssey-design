@@ -1,0 +1,49 @@
+---
+title: Button
+sidebar_position: 1
+---
+
+# Button
+
+Button 提供 solid、outline、soft、ghost 与 link 五种清晰层级；优先通过层级表达操作重要性，而不是在同一区域堆叠多个 solid 按钮。
+
+## 何时使用
+
+用于触发操作。链接导航应使用链接元素，不要用 Button 模拟。
+
+<ComponentDemo id="button" />
+
+## 按压反馈
+
+Button 不提供选择具体动画的属性。当前 theme 的完整交互配方会根据 Button 表面自动决定反馈：Ant Design 配方在 solid 与 outline 上使用外扩轮廓 Wave，Material 配方在非 link 表面使用内部坐标 Ripple，default 与 shadcn 保持安静的 active 状态。
+
+Wave 属于短暂的 activation feedback，与 Input 聚焦期间持续显示的 Focus Halo 是不同的反馈生命周期。两者共享语义色与 motion 约束，但不共享 Driver。
+
+特殊场景可以使用 `disablePressFeedback` 局部关闭装饰反馈，但可见的 `:focus-visible` 焦点环始终保留。disabled、loading 与 reduced-motion 状态不会创建反馈效果。
+
+## IconButton
+
+只有图标时必须提供 `aria-label`。`size` 控制方形按钮与点击区域，不会缩放子图标；图标使用自身默认尺寸，确有需要时由调用方在图标节点上显式覆盖。
+
+文字按钮中的装饰图标使用 `ButtonIcon`。它默认从无障碍树隐藏，尺寸与间距跟随 Button 的 `sm | md | lg`；前后位置由 JSX 顺序决定。调用方仍可通过 ButtonIcon 或图标自身的 CSS 显式覆盖尺寸。
+
+~~~tsx
+<Button variant="solid">
+  <ButtonIcon><Plus /></ButtonIcon>
+  新建项目
+</Button>
+~~~
+
+<ComponentDemo id="iconButton" />
+
+## 无障碍
+
+Button 必须保留可见焦点；IconButton 必须提供描述操作目的的 `aria-label`。Wave 与 Ripple 只是补充反馈，不能代替焦点样式或可访问名称。
+
+IconButton 默认使用主题圆角；悬浮快捷操作可通过 `shape="circular"` 获得稳定的圆形轮廓，无需消费方覆盖 `border-radius`。
+
+## API
+
+<ApiTable name="ButtonProps" />
+<ApiTable name="ButtonIconProps" />
+<ApiTable name="IconButtonProps" />

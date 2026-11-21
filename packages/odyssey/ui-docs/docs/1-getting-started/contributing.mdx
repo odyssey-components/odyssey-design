@@ -1,0 +1,43 @@
+---
+title: 贡献组件
+sidebar_position: 5
+---
+
+# 贡献组件
+
+## 开始之前
+
+确认需求无法通过现有组件组合完成，并明确组件面向 mobile、desktop 或两者。新增组件必须建立稳定 API，而不是直接暴露 Base UI primitive。
+
+## 实现顺序
+
+1. 定义 anatomy、交互状态、键盘行为和公共 Token。
+2. 在 `components/Component/` 中共置 `Component.tsx`、`Component.styles.tsx`、`index.ts` 和测试；使用 Base UI 适配交互语义，使用 styled-components 实现运行时样式。
+3. 为每个部件添加 `data-od-slot`，为变体和布局添加对应 `data-od-*`。
+4. 只导入当前组件的 CSS Module；跨组件复用 Token 与状态契约，不复用生成类名或跨文件 `composes`。
+5. 添加交互、无障碍、Provider/portal 和 Token 测试。
+6. 在 Catalog 登记组件，并完成 Demo、API 与迁移文档。
+
+## 文档模板
+
+~~~mdx
+# Component
+
+## 何时使用
+
+说明推荐场景和不适用场景。
+
+<ComponentDemo id="component" />
+
+## 键盘与无障碍
+
+列出按键、焦点、标签和错误信息要求。
+
+## API
+
+<ApiTable name="ComponentProps" />
+~~~
+
+## 验收
+
+组件库与文档站的 check、test、build 必须全部通过。公共 API、Token 或 anatomy 发生破坏性变化时必须更新版本与迁移文档。

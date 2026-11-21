@@ -1,0 +1,33 @@
+---
+title: RadioGroup
+sidebar_position: 5
+---
+
+# RadioGroup
+
+## 何时使用
+
+用于从一组互斥选项中选择一个。组标签通过 `legend` 暴露给辅助技术。
+
+普通选项由 `RadioGroupItem` 与 `RadioGroupIndicator` 组合；按钮式选项使用 `RadioButton`。同一组应保持一种呈现形态，数据驱动的 options 场景使用 ProRadioGroup。
+
+按钮组支持水平或垂直排列、`sm | md | lg`、`outline | solid` 和 `block`。每个普通 Radio 使用固定方形尺寸，Indicator 负责绘制并绝对居中，因此选择切换不会造成选项上下晃动。
+
+<ComponentDemo id="radioGroup" />
+
+## 无障碍
+
+RadioGroup 必须有可访问名称。方向键在选项间移动，Space 选择当前选项。
+
+粗指针设备保留至少 44px 的交互目标；reduced-motion 下禁用选中与反馈动效。禁用和只读状态由 Group 传播，也可在单项覆盖禁用状态。
+
+## API
+
+<ApiTable name="RadioGroupProps" />
+<ApiTable name="RadioGroupItemProps" />
+<ApiTable name="RadioGroupIndicatorProps" />
+<ApiTable name="RadioButtonProps" />
+
+## 迁移
+
+选中圆点现在由 `RadioGroupIndicator` 绘制。按钮式互斥选择使用新的 `RadioButton`，不要用 ToggleButton 模拟单选组。详见 [v0.12 迁移指南](/1-getting-started/v0-12-migration)。

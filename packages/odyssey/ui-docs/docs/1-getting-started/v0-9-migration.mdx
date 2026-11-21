@@ -1,0 +1,16 @@
+---
+title: v0.9 迁移
+sidebar_position: 9
+---
+
+# v0.9 迁移
+
+Odyssey UI 0.9 将 Field 与 Toast 对齐 Base UI 状态模型，并新增 InputGroup、Combobox 与七个 Component Token CSS Variables。
+
+## Field
+
+FieldLabel、FieldDescription 和 FieldError 会自动关联同一 Field 内的 Odyssey 控件，不再需要手工维护 `id`、`htmlFor` 和 `aria-describedby`。`FieldError.errors` 已移除；直接传入 children，或使用 `match` 与 `FieldValidity`。
+
+## Toast
+
+应用壳将 `ToastProvider` 替换为 `Toaster`。`duration` 改为 `timeout`，ID 改为 string，`accent` tone 按反馈语义改为 `success` 或 `info`。底层 anatomy 继续使用 `ToastProvider`、`ToastPortal`、`ToastViewport` 和 `ToastList` 自定义。

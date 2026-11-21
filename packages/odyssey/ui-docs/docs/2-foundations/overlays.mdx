@@ -1,0 +1,14 @@
+---
+title: 浮层与 Portal
+sidebar_position: 7
+---
+
+# 浮层与 Portal
+
+Odyssey 默认将浮层渲染到最近 `OdysseyProvider` 的 portal host，使主题、密度和预设保持一致。Drawer、Dialog 与 AlertDialog 是容器层；Select、DropdownMenu、Popover 与 Tooltip 是消费层。消费层嵌套在容器层时会自动显示在父层上方。
+
+层级由组件组合关系管理。应用不应通过不断增大 `z-index` 修复遮挡，否则会破坏模态遮罩、Toast 和后续嵌套浮层的顺序。
+
+各 Portal 仍接受 `container`，用于 Shadow DOM、独立渲染根或必须绑定特定宿主的场景。自定义容器需要自行避免 `overflow: hidden`、transform stacking context 和滚动裁剪问题。
+
+新增浮层组合时至少验证：顶层使用、模态内嵌、连续嵌套、Escape 关闭、outside press、焦点恢复和 Provider 主题继承。

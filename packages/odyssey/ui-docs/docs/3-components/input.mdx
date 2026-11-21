@@ -1,0 +1,28 @@
+---
+title: Input 与 Textarea
+sidebar_position: 3
+---
+
+# Input 与 Textarea
+
+## 何时使用
+
+始终使用可见的 `<label>` 描述输入目的；placeholder 不能替代标签。
+
+<ComponentDemo id="input" />
+<ComponentDemo id="textarea" />
+
+## 聚焦反馈
+
+Input 与 Textarea 使用持续到失焦的边框和 Focus Halo 表示当前编辑目标。这不是 Button 的点击 Wave：它不会从点击位置扩散，也不会在计时结束后自行消失。Ant Design Input 同样使用 active border 与 shadow，而不是 Wave。
+
+错误状态在未聚焦时只改变边框；获得焦点后才显示 destructive halo，避免把持续错误状态误解成一次点击动画。
+
+## 无障碍
+
+使用原生 label 或 FieldLabel 关联控件；错误和帮助信息通过 `aria-describedby` 关联，错误状态同时设置 `aria-invalid`。
+
+## API
+
+<ApiTable name="InputProps" />
+<ApiTable name="TextareaProps" />

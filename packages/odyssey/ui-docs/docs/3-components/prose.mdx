@@ -1,0 +1,22 @@
+---
+title: Prose
+sidebar_position: 5
+---
+
+# Prose
+
+Prose 为文章、帮助文档和可信富文本提供统一的标题、段落、列表、引用、代码及表格排版，并读取主题的 `fontEditorial` token。
+
+## 何时使用
+
+用于长篇、语义化的阅读内容。产品导航、表单标签和紧凑数据列表继续使用默认界面字体。
+
+Prose 只负责视觉，不清洗 HTML。使用 `dangerouslySetInnerHTML` 时，调用方必须在可信服务端边界完成清洗。
+
+## 无障碍
+
+正文必须保留正确的标题层级、列表和表格语义；链接文本应能独立说明目标。代码区域可横向滚动，但不能截断内容。
+
+## API
+
+<ApiTable name="ProseProps" />

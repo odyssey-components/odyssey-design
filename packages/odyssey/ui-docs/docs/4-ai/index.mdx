@@ -1,0 +1,109 @@
+---
+title: Odyssey AI
+description: Odyssey UI 呈现的 AI 交互组件，TanStack AI 驱动的浏览器端运行时。
+---
+
+import { AIMessage } from "@odyssey/ui/ai/message";
+import { AIThread } from "@odyssey/ui/ai/thread";
+
+# Odyssey AI
+
+AI 能力分成两层：**`@odyssey/ui/ai`** 拥有全部 AI 交互呈现组件，**`@odyssey/ai`** 只保留浏览器端运行时。模型密钥、工具权限、Agent 编排和会话持久化始终留在产品后端。
+
+## 呈现层：`@odyssey/ui/ai`
+
+| 入口 | 组件 |
+| --- | --- |
+| `@odyssey/ui/ai/composer` | `AIComposer`、`AIComposerInput`、`AIComposerSend`、`AIComposerCancel`、`AIComposerAttachment*`、`useAIComposerAttachments` |
+| `@odyssey/ui/ai/message` | `AIMessage`、`AIMessageHeader`、`AIMessageBody`、`AIMessageFooter`、`AIMessageParts`、`AIMessageActions`、`AIMessageBranchPicker*` |
+| `@odyssey/ui/ai/tool-call` | `AIToolCall`、`AIToolCallResult`、`AIToolCallError`、`AIToolApproval` |
+| `@odyssey/ui/ai/thread` | `AIThread`、`AIThreadViewport`、`AIThreadEmpty`、`AIThreadIf` |
+| `@odyssey/ui/ai/thread-list` | `AIThreadList`、`AIThreadListItems`、`AIThreadListItem`、`AIThreadListNew` |
+| `@odyssey/ui/ai/suggestion` | `AISuggestionList`、`AISuggestionTrigger`、`AISuggestionTitle`、`AISuggestionDescription` |
+| `@odyssey/ui/ai/model-selector` | `AIModelSelector` 与受控 Select primitives |
+| `@odyssey/ui/ai/renderers` | `createAIRendererRegistry`、`AIUnknownPartFallback` |
+| `@odyssey/ui/ai/timeline` | `AITimeline`、`AITimelineItem` |
+| `@odyssey/ui/ai/approval` | `AIApproval` 与标题、描述、操作区 |
+
+组件只依赖 Odyssey 公开的 primitives、token 和 locale 契约，不认识 Provider、Session、权限或传输协议。调用方持有数据与动作资格。
+
+## 基础组合
+
+<AIThread style={{ minHeight: 160, padding: 16 }}>
+  <AIMessage message={{ id: "demo", role: "assistant", parts: [{ type: "text", text: "我是由 Odyssey UI 呈现的 AI 助手。" }] }} />
+</AIThread>
+
+## 运行时：`@odyssey/ai`
+
+```tsx
+import { Assistant } from "@odyssey/ai/assistant";
+import { createOdysseyAIClient } from "@odyssey/ai/headless";
+
+const client = createOdysseyAIClient({
+  endpoint: "/api/ai/chat",
+  headers: async () => ({ Authorization: `Bearer ${await getToken()}` }),
+  metadata: () => ({ page: window.location.pathname }),
+});
+
+<Assistant runtime={{ client, productKey: "example", sessionId }} options={{ welcome: { suggestions } }} />;
+```
+
+当产品已经提供 `OdysseyAIProvider` 时，可以独立组合预置工作区：
+
+```tsx
+import { AssistantWorkspace } from "@odyssey/ai/assistant";
+
+<AssistantWorkspace options={{ composer: {
+  attachments: { adapter: attachmentAdapter },
+  modelSelector: { options: models, value: modelId, onChange: setModelId },
+} }} />;
+```
+
+Workspace 提供完整默认聊天；产品只负责构造 `AssistantOptions`。需要特殊布局时直接组合 `@odyssey/ui/ai` 的 Thread、Message 和 Composer primitives。
+
+默认 Workspace 是薄编排层：runtime 负责会话能力，内部 Header、Messages、Composer feature sections 各自管理局部状态，公开 facade 只提供一套推荐结构。
+
+后端端点使用 TanStack AI AG-UI/SSE 协议，并基于 `threadId` 提供会话 hydrate。浏览器端不得配置模型 API Key。
+
+路由已经预取会话历史时，可以通过 runtime 的 `initialThread` 传入完整 `ThreadRepository`。预组合 Assistant 会直接渲染消息并恢复其中的 active run，避免在路由加载状态之后再次显示消息 hydration 状态。
+
+## 工具审批
+
+```tsx
+import { defineClientTool } from "@odyssey/ai/headless";
+
+const archive = defineClientTool({
+  name: "archive-source",
+  description: "归档新闻来源",
+  requiresApproval: true,
+  execute: async ({ sourceId }, { signal }) => archiveSource(sourceId, signal),
+});
+```
+
+有副作用的工具默认进入审批状态；用户允许后才执行，拒绝和异常都会作为结果返回对话。
+
+## 建议问题与输入区
+
+```tsx
+import { AIComposer, AIComposerInput } from "@odyssey/ui/ai/composer";
+import { AISuggestionList } from "@odyssey/ui/ai/suggestion";
+
+const suggestions = [
+  { id: "summary", title: "总结材料", description: "提炼重点和行动项", prompt: "请总结这份材料" },
+];
+
+<AISuggestionList suggestions={suggestions} onSelect={setInput} />;
+<AIComposer onFiles={(files) => upload(files)}>
+  <AIComposerInput value={input} onChange={(event) => setInput(event.target.value)} minRows={1} maxRows={6} onFiles={(files) => upload(files)} />
+</AIComposer>;
+```
+
+建议触发器默认只填入草稿，用户可以修改后发送。Composer 的文件选择、拖放和粘贴应进入同一上传流程；生成中、停止和失败状态由消息本身呈现，并保留已经收到的正文。
+
+`useAIComposerAttachments` 管理 uploading、ready、failed、移除与发送后清空。`@odyssey/ui/ai/model-selector` 提供受控模型选择 primitives；预组合 Trigger 使用 Ghost Select。Composer 右侧以一个圆形纯图标主操作在语音、发送、停止听写和停止生成之间切换，不重复显示独立语音按钮。
+
+建议项和附件移除按钮均使用原生按钮语义并提供可访问名称。Enter 发送，Shift+Enter 换行；用户主动上滚后 Thread 不会抢回滚动位置，可通过“回到底部”按钮恢复跟随。
+
+默认 Assistant 会渲染 GFM，并使用细粒度 Shiki bundle 为常用语言按需加载 grammar。代码使用 `github-light` / `github-dark` 双主题并跟随 Odyssey 已解析的明暗模式切换；未知语言自动回退为纯文本。流式输出始终保持同尺寸纯文本并跳过 Shiki，整条消息结束后一次性高亮，包括已结束但缺少闭合围栏的已知语言代码。`finishReason=length` 或 `content-filter` 会显示内容不完整提示。较长的用户消息会按实际高度折叠，AI 回复保持完整，复制操作始终使用完整原文。Assistant 消息从生成开始即预留操作栏空间，生成完成时显示操作按钮不会推动相邻内容；发送按钮默认使用主题主色的纯图标样式。
+
+较长的终态代码默认展开，并在当前代码块边界内显示 sticky 折叠操作；短代码、流式代码和 Markdown 预览不显示该操作。消息 viewport 的“回到底部”和程序化定位默认平滑滚动，同时尊重系统的减少动态效果设置。

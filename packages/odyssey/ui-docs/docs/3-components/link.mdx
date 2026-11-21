@@ -1,0 +1,34 @@
+---
+title: Link
+sidebar_position: 2
+---
+
+# Link
+
+Link 是语义化的原生链接，用于页面、资源和外部内容导航。触发保存、删除或状态切换等操作时应使用 Button。
+
+## 何时使用
+
+用于导航到页面、文件或外部资源。需要执行操作但不发生导航时，使用 Button；不要仅为了获得链接外观而改变元素语义。
+
+## 基础用法
+
+Link 支持 primary、muted 和 inherit 三种文字色，以及 hover、always 和 none 三种下划线策略。
+
+<ComponentDemo id="link" />
+
+## 单行省略
+
+设置 `ellipsis` 后，Link 会在父布局提供有限宽度时截断 label，并保留前后装饰图标。组件不会自动占满父容器；需要由业务布局通过 width、max-width 或 flex/grid 约束可用空间。
+
+## 新窗口
+
+当 `target="_blank"` 且未显式提供 `rel` 时，Link 自动使用 `noopener noreferrer`。组件不会自动判断外链，也不会自动添加外链图标。
+
+## 无障碍
+
+Link 保留原生 anchor 的键盘、屏幕阅读器、复制地址和浏览器上下文菜单行为，并提供可见的 `:focus-visible` 焦点环。装饰图标不进入可访问名称。
+
+## API
+
+<ApiTable name="LinkProps" />

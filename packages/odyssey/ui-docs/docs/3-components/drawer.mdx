@@ -1,0 +1,25 @@
+---
+title: Drawer
+sidebar_position: 17
+---
+
+# Drawer
+
+## 何时使用
+
+Drawer 承载不需要离开当前页面的设置或辅助任务。内容通过 Provider 的 portal host 渲染，并负责焦点锁定、Escape 关闭和关闭后的焦点恢复。
+
+<ComponentDemo id="drawer" />
+
+## 嵌套浮层
+
+Drawer 内可以直接组合 Select、DropdownMenu、Popover 和 Tooltip。Odyssey 会根据组件嵌套关系提升子浮层层级，不需要在业务样式中设置 `z-index`。仅在 Shadow DOM 或指定宿主等集成场景中覆盖各 Portal 的 `container`。
+
+## 键盘与无障碍
+
+Escape 关闭 Drawer，Tab 焦点限制在内容内；标题必须描述抽屉任务。
+
+## API
+
+<ApiTable name="DrawerProps" />
+<ApiTable name="DrawerPopupProps" />

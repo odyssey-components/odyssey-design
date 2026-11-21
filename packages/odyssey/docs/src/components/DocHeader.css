@@ -1,0 +1,29 @@
+.od-Docs-breadcrumb {
+  max-width: 980px;
+  margin: 0 auto 20px;
+}
+
+.od-Docs-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--od-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.od-Docs-breadcrumb li:not(:last-child)::after {
+  margin-left: var(--od-space-2);
+  color: var(--od-muted-foreground);
+  content: "/";
+}
+.od-Docs-breadcrumbAction {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--od-primary);
+  cursor: pointer;
+  font: inherit;
+}
+.od-Docs-breadcrumbAction:hover {
+  text-decoration: underline;
+}

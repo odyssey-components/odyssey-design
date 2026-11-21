@@ -1,0 +1,29 @@
+---
+title: 组件总览
+sidebar_position: 0
+---
+
+import { odysseyCatalog } from "../../src/catalog";
+
+# 组件总览
+
+Odyssey 组件按职责分类，由 Catalog 自动生成状态与平台信息。优先组合现有 primitive，再考虑新增组件。
+
+{["general", "forms", "navigation", "feedback", "overlay", "layout"].map((category) => {
+  const items = odysseyCatalog.filter((item) => item.category === category);
+  if (items.length === 0) return null;
+  return (
+    <section key={category}>
+      <h2>{category}</h2>
+      <div className="component-grid">
+        {items.map((item) => (
+          <a className="component-card" href={`#/${item.docId}`} key={item.name}>
+            <strong>{item.title}</strong>
+            <span>{item.status} · {item.platforms.join(" / ")}</span>
+            <small>{item.parts.length} parts · since {item.since}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+})}

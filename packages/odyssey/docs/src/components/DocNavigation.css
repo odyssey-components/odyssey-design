@@ -1,0 +1,62 @@
+.od-Docs-navigationList {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: var(--od-space-2);
+  list-style: none;
+}
+.od-Docs-navigationList .od-Docs-navigationList {
+  padding: 2px 0 2px var(--od-space-4);
+}
+.od-Docs-navigationRow {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+.od-Docs-navigationToggle,
+.od-Docs-navigationAction {
+  min-height: var(--od-item-height);
+  border: 0;
+  border-radius: var(--od-radius-md);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+}
+.od-Docs-navigationToggle {
+  display: inline-grid;
+  flex: 0 0 28px;
+  place-items: center;
+  padding: 0;
+}
+.od-Docs-navigationToggle svg {
+  transition: transform var(--od-duration-fast) var(--od-ease-standard);
+}
+.od-Docs-navigationToggle[aria-expanded="true"] svg {
+  transform: rotate(90deg);
+}
+.od-Docs-navigationIndent {
+  flex: 0 0 28px;
+}
+.od-Docs-navigationAction {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 var(--od-space-2);
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.od-Docs-navigationToggle:hover,
+.od-Docs-navigationAction:hover {
+  background: var(--od-accent);
+}
+.od-Docs-navigationAction[aria-current="page"] {
+  background: var(--od-primary);
+  color: var(--od-primary-foreground);
+  font-weight: var(--od-font-weight-medium);
+}
+.od-Docs-navigationToggle:focus-visible,
+.od-Docs-navigationAction:focus-visible {
+  outline: var(--od-focus-ring-width) solid color-mix(in oklch, var(--od-ring) 40%, transparent);
+  outline-offset: 1px;
+}

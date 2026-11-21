@@ -1,0 +1,114 @@
+.od-Docs-content {
+  margin: 0 auto;
+  padding: 32px 40px;
+  border: var(--od-line-width) solid var(--od-border);
+  border-radius: var(--od-radius-lg);
+  background: var(--od-background);
+  box-shadow: var(--od-shadow-sm);
+  content-visibility: auto;
+  contain-intrinsic-size: 800px;
+}
+
+.od-Docs-content h1,
+.od-Docs-content h2,
+.od-Docs-content h3,
+.od-Docs-content h4 {
+  scroll-margin-top: 24px;
+}
+
+.od-Docs-content h1 {
+  margin-top: 0;
+  font-size: 2rem;
+}
+
+.od-Docs-content h2 {
+  margin-top: 2.25rem;
+  padding-bottom: 0.35rem;
+  border-bottom: var(--od-line-width) solid var(--od-border);
+  font-size: 1.45rem;
+}
+
+.od-Docs-content h3 {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+}
+
+.od-Docs-content p,
+.od-Docs-content li {
+  line-height: 1.8;
+}
+
+.od-Docs-content blockquote {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-left: 4px solid var(--od-border);
+  background: var(--od-muted);
+  color: var(--od-muted-foreground);
+}
+
+.od-Docs-content table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+}
+
+.od-Docs-content th,
+.od-Docs-content td {
+  padding: 8px 10px;
+  border: var(--od-line-width) solid var(--od-border);
+  vertical-align: top;
+}
+
+.od-Docs-content th {
+  background: var(--od-muted);
+  font-weight: 600;
+}
+
+.od-Docs-content code {
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--od-radius-sm);
+  background: var(--od-muted);
+}
+
+.od-Docs-content pre {
+  overflow: auto;
+  padding: 1rem;
+  border-radius: var(--od-radius-lg);
+  background: var(--od-foreground);
+  color: var(--od-background);
+}
+
+.od-Docs-content pre code {
+  padding: 0;
+  background: transparent;
+}
+
+.od-Docs-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+.od-Docs-loading {
+  padding: 24px;
+}
+
+.markdown table tr td,
+.markdown table tr th {
+  padding: 12px 16px;
+  vertical-align: top;
+}
+
+.markdown table {
+  display: block;
+  overflow-x: auto;
+  white-space: normal;
+}
+
+.markdown table tr td span.huan-jie {
+  display: inline;
+  white-space: nowrap;
+}

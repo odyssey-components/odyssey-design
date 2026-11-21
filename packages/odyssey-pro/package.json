@@ -1,0 +1,62 @@
+{
+  "name": "@odyssey/pro",
+  "private": true,
+  "version": "0.5.0",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    "./admin-provider": "./src/admin-provider.ts",
+    "./admin-shell": "./src/admin-shell.ts",
+    "./admin-theme-menu": "./src/admin-theme-menu.ts",
+    "./admin-user-menu": "./src/admin-user-menu.ts",
+    "./admin-login": "./src/admin-login.ts",
+    "./select": "./src/select.ts",
+    "./confirm": "./src/confirm.ts",
+    "./table": "./src/table.ts",
+    "./form": "./src/form.ts",
+    "./page-state": "./src/page-state.ts",
+    "./icon-picker": "./src/icon-picker.ts",
+    "./number-field": "./src/number-field.ts",
+    "./otp-field": "./src/otp-field.ts",
+    "./radio-group": "./src/radio-group.ts",
+    "./checkbox-group": "./src/checkbox-group.ts",
+    "./count-badge": "./src/count-badge.ts",
+    "./pagination": "./src/pagination.ts",
+    "./provider": "./src/provider.ts",
+    "./locale": "./src/locale.ts",
+    "./options": "./src/options.ts"
+  },
+  "scripts": {
+    "architecture:check": "node ./scripts/validate-architecture.mjs",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit",
+    "check": "node ./scripts/validate-architecture.mjs && tsc -p tsconfig.app.json --noEmit && biome check src scripts",
+    "test:run": "vitest run --pool=threads --maxWorkers=1 --no-file-parallelism"
+  },
+  "dependencies": {
+    "@odyssey/ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "catalog:",
+    "@odyssey/design-devconfig": "workspace:*",
+    "@odyssey/web-testkit": "workspace:*",
+    "@testing-library/jest-dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "@types/jest-axe": "^3.5.9",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "jsdom": "catalog:",
+    "jest-axe": "^10.0.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  },
+  "license": "MIT"
+}

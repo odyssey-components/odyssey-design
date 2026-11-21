@@ -1,0 +1,15 @@
+---
+title: Architecture
+---
+
+# Architecture
+
+Odyssey 使用 Base UI 提供语义、状态和无障碍 primitive，使用 styled-components 承载运行时样式，使用 TypeScript 主题解析器维护 Seed、Semantic 与 Component Token。
+
+包以 `src/index.ts` 作为唯一公开入口，由最终应用统一编译。不存在 UI dist、独立 CSS 导出、源码复制 registry 或主题代码生成。稳定的 `data-od-slot` 与公开 CSS Variables 仍是业务扩展边界，styled-components 生成类名属于私有实现。
+
+组件规则仍与各组件的 `*.styles.tsx` 共置，但由内部 Runtime Styles registry 汇总。`OdysseyProvider` 每个实例只挂载一次 registry，并通过内部上下文让子组件跳过重复注入；这避免列表、表格和状态标签按实例线性扩大样式表。组件脱离 Provider 时由内部 fallback 挂载自己的规则，因此独立渲染与 SSR 测试不依赖特殊公开 API。
+
+## Core 与 Pro 分层
+
+`@odyssey/ui` 只提供可组合 primitive、稳定 anatomy、状态与样式契约。数组驱动的 `options` / `items`、默认标签组合和应用层便利属性属于 `@odyssey/pro`；Pro 只能通过 Core 公开入口组合这些能力，并为复杂内容保留类型安全的 render 或 slot 逃生口。Ant Design 等成熟组件库用于检查能力覆盖，不作为 API、DOM 或样式实现的复制来源。
