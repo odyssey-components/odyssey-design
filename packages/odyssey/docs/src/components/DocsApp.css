@@ -198,3 +198,40 @@
     bottom: var(--od-space-4);
   }
 }
+
+.od-Docs-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 1031;
+  height: 2px;
+  pointer-events: none;
+  background: var(--od-primary, #1677ff);
+  opacity: 0;
+  transform-origin: left;
+  transition: opacity 160ms ease 300ms, transform 200ms ease;
+}
+
+.od-Docs-progress:dir(rtl) {
+  transform-origin: right;
+}
+
+.od-Docs-progress[data-active] {
+  opacity: 1;
+  transform: scaleX(0.8);
+  animation: od-Docs-progress 1.2s ease-out both;
+  transition: none;
+}
+
+@keyframes od-Docs-progress {
+  from {
+    transform: scaleX(0.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .od-Docs-progress,
+  .od-Docs-progress[data-active] {
+    animation: none;
+    transition: none;
+  }
+}

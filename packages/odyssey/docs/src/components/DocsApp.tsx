@@ -1,4 +1,3 @@
-import { ProgressProvider } from "@bprogress/react";
 import type { OdysseyI18nInstance } from "@odyssey/ui/i18n";
 import { IconButton } from "@odyssey/ui/icon-button";
 import type { OdysseyLocale } from "@odyssey/ui/locale";
@@ -302,13 +301,11 @@ function DocsAppRuntime({
   );
 
   return (
-    <ProgressProvider color="#1677ff" height="2px" options={{ showSpinner: false }}>
-      <OdysseyProvider colorScheme={appearanceState.colorScheme} density={appearanceState.density} theme={appearance?.theme} i18n={i18n} locale={uiLocale}>
-        <DocsLocaleContext.Provider value={resolvedLocale}>
-          <TooltipProvider>{layout}</TooltipProvider>
-        </DocsLocaleContext.Provider>
-      </OdysseyProvider>
-    </ProgressProvider>
+    <OdysseyProvider colorScheme={appearanceState.colorScheme} density={appearanceState.density} theme={appearance?.theme} i18n={i18n} locale={uiLocale}>
+      <DocsLocaleContext.Provider value={resolvedLocale}>
+        <TooltipProvider>{layout}</TooltipProvider>
+      </DocsLocaleContext.Provider>
+    </OdysseyProvider>
   );
 }
 
